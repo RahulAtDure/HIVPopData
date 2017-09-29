@@ -1,0 +1,57 @@
+
+
+<div class="row" ng-init="vm.init()">
+	<div class="col-md-12" ng-if="vm.isLoaded">
+		<div class="progress">
+			<div 	class="progress-bar progress-bar-danger progress-bar-striped active" 
+			  		role="progressbar" 
+			  		aria-valuenow="100" 
+			  		aria-valuemin="0" 
+			  		aria-valuemax="100" 
+			  		style="width: 100%">
+			    <span class="sr-only">100% Complete</span>
+			</div>
+		</div>		
+	</div>
+	<div class="col-md-12" style="width:120%" ng-if="!vm.isLoaded && !vm.isResponse">
+		<table class="table table-bordered" id="indicatorTbl">
+			<thead>
+				<tr>
+					<th><span class="pull-right">Indicator</span></th>
+					<th><span class="pull-right">Numerator</span></th>
+					<th>Data Elements</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="indicator in vm.indicatorList">
+					<td align="right">{{indicator.displayName}}</td>
+					<td align="right">{{( vm.indicatorMap[indicator.id]['indicatorName'] === undefined || vm.indicatorMap[indicator.id]['indicatorName'] === "") ? vm.indicatorMap[indicator.id]['indicatorName'].numerator : vm.indicatorMap[indicator.id]['indicatorName']}}</td>
+					<td>
+						
+
+						<select ng-model="vm.selectedDataElementOperand[indicator.id]['id']" 
+								ng-options="operand.id as operand.displayName for operand in vm.dataElementOperandList"
+								class="form-control"
+								ng-change="vm.onChangeDataElement(indicator.id)"
+								ng-disabled="vm.isMappingDone === true">
+							<option value="">Select</option>
+						</select>		
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="right">
+						
+					<button class="btn btn-primary" 
+							ng-click="vm.confirmIndicatorsMapping()" 
+							ng-if="vm.isMappingDone === false">Apply</button>
+						<button class="btn btn-primary"
+								ng-if="vm.isMappingDone === true" 
+								ng-click="vm.submit()">Update Indicator</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div uib-alert ng-class="'alert-' + (vm.alert.type)" ng-if="vm.isResponse">{{vm.alert.msg}}</div>

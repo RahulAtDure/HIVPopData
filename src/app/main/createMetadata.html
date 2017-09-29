@@ -1,0 +1,39 @@
+<div id='cssmenu'>
+   <ul>
+   		<li class="active" style="width:160px">
+        	<a href="javaScript:void(0)" style="width:160px">Setup Metadata</a>
+      	</li>	
+	    <li style="width:205px">
+	        <a href="javaScript:void(0)" style="width:188px">Upload Data File</a>
+	    </li>
+	    <li style="width:250px">
+	       <a href="javaScript:void(0)" style="width:230px">Associate Data Elements</a>
+	    </li>
+	    <li style="width:250px">
+	       <a href="javaScript:void(0)" style="width:240px">Associate Organisation Units</a>
+	    </li>
+	    <li style="width:200px">
+	       <a href="javaScript:void(0)" style="width:165px;padding-left: 60px">Import Data</a>
+	    </li>
+   </ul>
+</div>
+<br/>
+<br/>
+<div class="row" ng-init="vm.init()">
+	<div class="col-md-5">
+		<button class="btn btn-lg btn-primary" ng-click="vm.importDataElements()">Upload Metadata</button>
+		<br/><br/>
+		<div class="alert alert-success" role="alert" ng-show="vm.isAlert.visible && vm.isAlert.success">Metadata import <b>successfull</b></div>
+		<div class="alert alert-danger" role="alert" ng-show="vm.isAlert.visible && vm.isAlert.danger">Metadata import <b>error</b></div>		
+	</div>
+</div>
+<div class="progress" ng-show="vm.isLoading">
+	<div 	class="progress-bar progress-bar-danger progress-bar-striped active" 
+	  		role="progressbar" 
+	  		aria-valuenow="100" 
+	  		aria-valuemin="0" 
+	  		aria-valuemax="100" 
+	  		style="width: 100%">
+	    <span class="sr-only">100% Complete</span>
+	</div>
+</div>
