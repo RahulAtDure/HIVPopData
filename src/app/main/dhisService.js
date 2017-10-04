@@ -491,9 +491,10 @@
 		} // end of importIndicatorsFile
 
 
-		function getDataElementOperands(){
-			var url = DHIS_BACKEND + "/api/dataElementOperands.json?filter=shortName:ilike:HIV%20Pop&fields=id,displayName&totals=true";
+		function getDataElementOperands(param){
+			//var url = DHIS_BACKEND + "/api/dataElementOperands.json?filter=displayName:ilike:HIV&fields=id,displayName&totals=true";
 			
+			var url = DHIS_BACKEND + "/api/dataElementOperands.json?filter=displayName:ilike:"+param+"&fields=id,displayName&totals=true";
 
 			var deferred = $q.defer();
 			
